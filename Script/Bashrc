@@ -1,0 +1,26 @@
+#!/bin/sh
+LAST_PATH="${PWD##*/}"
+echo $LAST_PATH
+ROOT_PATH=`cd ../;pwd`
+
+if [ "$LAST_PATH" != "Script" ]; then
+	echo "Please execute Bashrc on Script folder"
+	#Use exit will cause ssh disconnected
+	return 1;
+fi
+
+export DEBFLAGS=-O3
+
+#output header DIR
+export GROUTE_INC_DIR=${GROUTE_INC_DIR:-${ROOT_PATH}/Include}
+
+#output library DIR
+export GROUTE_LD_DIR=${GROUTE_LD_DIR:-${ROOT_PATH}/Lib}
+
+#input jhash header DIR
+export JHASH_H_DIR=${JHASH_H_DIR:-${ROOT_PATH}/C/include}
+
+#input glist header DIR
+export GLIST_H_DIR=${GLIST_H_DIR:-${ROOT_PATH}/C/include}
+
+
